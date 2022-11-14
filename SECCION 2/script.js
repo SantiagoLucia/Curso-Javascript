@@ -122,3 +122,109 @@
 // santiago.location = 'Argentina';
 // console.log(santiago);
 // console.log(santiago.friends[0]);
+
+
+// const santiago = {
+//     firstName: 'Santiago',
+//     lastName: 'Lucia Privitera',
+//     birthYear: 1992,
+//     job: 'Programmer',
+//     friends: ['Michael', 'Peter', 'Steven'],
+//     hasDriversLicense: true,
+
+//     calcAge: function () {
+//         this.age = 2037 - this.birthYear;
+//         return this.age;
+//     }
+
+// };
+
+// console.log(santiago.calcAge());
+// console.log(santiago.age);
+
+
+
+// const markMiller = {
+//     fullName: 'Mark Miller',
+//     mass: 78,
+//     height: 1.69,
+
+//     calcBMI: function () {
+//         this.bmi = this.mass / this.height ** 2;
+//         return this.bmi
+//     }
+// };
+
+// const johnSmith = {
+//     fullName: 'John Smith',
+//     mass: 92,
+//     height: 1.95,
+
+//     calcBMI: function () {
+//         this.bmi = this.mass / this.height ** 2;
+//         return this.bmi
+//     }
+// };
+
+// markMiller.calcBMI();
+// johnSmith.calcBMI();
+
+// if (markMiller.bmi > johnSmith.bmi) {
+//     console.log(`Mark's BMI (${markMiller.bmi}) is higher than John's BMI (${johnSmith.bmi})`);
+// } else {
+//     console.log(`John's BMI (${johnSmith.bmi}) is higher than Mark's BMI (${markMiller.bmi})`);
+// };
+
+
+
+// for (let index = 1; index <= 10; index++) {
+//     console.log(`Repetición ${index}`);
+// }
+
+
+// const array = [
+//     'Jonas',
+//     'Schedtmann',
+//     2037 - 1991,
+//     'teacher',
+//     ['Michael', 'Peter', 'Steven']
+// ];
+
+// const stringTypes = [];
+// for (let index = 0; index < array.length; index++) {
+//     if (typeof array[index] !== 'string') continue;
+//     //if (typeof array[index] === 'number') break;
+//     stringTypes.push(array[index]);
+// }
+// console.log(stringTypes);
+
+// let rep = 1;
+// while (rep <= 10) {
+//     console.log(`Rep ${rep}`);
+//     rep++;
+// }
+
+
+const bills = [22, 295, 176, 440, 37, 105, 10, 1100, 86, 52];
+const tips = [];
+const totals = [];
+
+const calcTip = bill => bill >= 50 && bill <= 300 ? bill * .15 : bill * .2;
+
+const calcAverage = function (arr) {
+    let sum = 0;
+    for (let i = 0; i < arr.length; i++) {
+        sum += arr[i];
+    }
+    return sum / arr.length;
+}
+
+for (let index = 0; index < bills.length; index++) {
+    tips.push(calcTip(bills[index]));
+    totals.push(bills[index] + tips[index]);
+}
+
+console.log(bills);
+console.log(tips);
+console.log(totals);
+console.log(calcAverage(totals));
