@@ -99,3 +99,26 @@
 // const total = [bills[0] + tips[0], bills[1] + tips[1], bills[2] + tips[2]];
 // console.log(total);
 
+
+// const santiago = {
+//     firstName: 'Santiago',
+//     lastName: 'Lucia Privitera',
+//     age: 2022 - 1992,
+//     job: 'Programmer',
+//     friends: ['Michael', 'Peter', 'Steven']
+// };
+// console.log(santiago);
+
+// console.log(santiago.firstName);
+
+// const interestedIn = prompt('What do you want to know about Santiago? (firstName, lasName, age, job, friends)');
+
+// if (santiago[interestedIn]) {
+//     console.log(santiago[interestedIn]);
+// } else {
+//     console.log('Peticion invalida.');
+// }
+
+// santiago.location = 'Argentina';
+// console.log(santiago);
+// console.log(santiago.friends[0]);
