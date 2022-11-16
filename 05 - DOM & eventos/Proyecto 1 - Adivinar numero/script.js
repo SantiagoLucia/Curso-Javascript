@@ -11,6 +11,17 @@ let secretNumber = Math.trunc(Math.random() * 20) + 1;
 let score = 20;
 let highScore = 0;
 
+const updateOnFail = function (message) {
+  if (score > 1) {
+    document.querySelector('.message').textContent = message;
+    score--;
+    document.querySelector('.score').textContent = score;
+  } else {
+    document.querySelector('.message').textContent = '💥 You lost the game!';
+    document.querySelector('.score').textContent = 0;
+  }
+};
+
 //handler again button
 document.querySelector('.again').addEventListener('click', function () {
   secretNumber = Math.trunc(Math.random() * 20) + 1;
@@ -46,24 +57,10 @@ document.querySelector('.check').addEventListener('click', function () {
 
     // When guess is too high
   } else if (guess > secretNumber) {
-    if (score > 1) {
-      document.querySelector('.message').textContent = '📈 Too high!';
-      score--;
-      document.querySelector('.score').textContent = score;
-    } else {
-      document.querySelector('.message').textContent = '💥 You lost the game!';
-      document.querySelector('.score').textContent = 0;
-    }
+    updateOnFail('📈 Too high!');
 
     // When guess is too slow
   } else if (guess < secretNumber) {
-    if (score > 1) {
-      document.querySelector('.message').textContent = '📉 Too low!';
-      score--;
-      document.querySelector('.score').textContent = score;
-    } else {
-      document.querySelector('.message').textContent = '💥 You lost the game!';
-      document.querySelector('.score').textContent = 0;
-    }
+    updateOnFail('📉 Too low!');
   }
 });
