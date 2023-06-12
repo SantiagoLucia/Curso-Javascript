@@ -33,17 +33,11 @@ const resetGame = function () {
   current0El.textContent = 0;
   current1El.textContent = 0;
   diceEl.classList.add('hidden');
+  player0El.classList.remove('player--winner');
+  player1El.classList.remove('player--winner');
+  player0El.classList.add('player--active');
+  player1El.classList.remove('player--active');
 
-  if (!playing) {
-    document
-      .querySelector(`.player--${activePlayer}`)
-      .classList.remove('player--winner');
-  }
-
-  if (!player0El.classList.contains('player--active')) {
-    player0El.classList.add('player--active');
-    player1El.classList.remove('player--active');
-  }
   playing = true;
   scores = [0, 0];
   currentScore = 0;
