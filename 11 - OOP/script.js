@@ -32,31 +32,107 @@
 
 ///////////////////////////////////////////
 
-class PersonCl {
-  constructor(firstName, birthYear) {
-    this.firstName = firstName;
-    this.birthYear = birthYear;
+// class PersonCl {
+//   constructor(firstName, birthYear) {
+//     this.firstName = firstName;
+//     this.birthYear = birthYear;
+//   }
+
+//   calcAge() {
+//     console.log(2037 - this.birthYear);
+//   }
+// }
+
+// const santiago = new PersonCl('Santiago', 1996);
+// console.log(santiago);
+
+// // getters and setters
+
+// const account = {
+//   owner: 'Santi',
+//   movements: [200, 530, 120, 300],
+
+//   get latest() {
+//     return this.movements.slice(-1).pop();
+//   },
+
+//   set latest(mov) {
+//     this.movements.push(mov);
+//   },
+// };
+
+//////////////////////////////////////////////////////////////
+// Inheritance
+
+const Person = function (firstName, birthYear) {
+  this.firstName = firstName;
+  this.birthYear = birthYear;
+};
+
+Person.prototype.calcAge = function () {
+  console.log(2037 - this.birthYear);
+};
+
+const Student = function (firstName, birthYear, course) {
+  Person.call(this, firstName, birthYear);
+  this.course = course;
+};
+
+Student.prototype = Object.create(Person.prototype);
+
+Student.prototype.introduce = function () {
+  console.log(`My name is ${this.firstName}`);
+};
+
+const mike = new Student('Mike', 2020, 'Computer Science');
+mike.introduce();
+mike.calcAge();
+
+////////////////////////////////////////////////////////////////
+
+class Account {
+  constructor(owner, currency, pin) {
+    this.owner = owner;
+    this.currency = currency;
+    // protected property
+    this._pin = pin;
+    this._movements = [];
+    this.locale = navigator.language;
   }
 
-  calcAge() {
-    console.log(2037 - this.birthYear);
+  getMovements() {
+    return this._movements;
+  }
+
+  deposit(val) {
+    this._movements.push(val);
+    return this;
+  }
+
+  withdraw(val) {
+    this.deposit(-val);
+    return this;
+  }
+
+  _aproveLoan(val) {
+    return true;
+  }
+
+  requestLoan(val) {
+    if (this._aproveLoan(val)) {
+      this.deposit(val);
+      return this;
+    }
   }
 }
 
-const santiago = new PersonCl('Santiago', 1996);
-console.log(santiago);
+const acc1 = new Account('Santiago', 'AR', 1111);
+console.log(acc1);
 
-// getters and setters
+acc1.deposit(250);
+acc1.withdraw(150);
+console.log(acc1);
 
-const account = {
-  owner: 'Santi',
-  movements: [200, 530, 120, 300],
-
-  get latest() {
-    return this.movements.slice(-1).pop();
-  },
-
-  set latest(mov) {
-    this.movements.push(mov);
-  },
-};
+// chaining
+acc1.deposit(300).deposit(500).withdraw(400).requestLoan(5000);
+console.log(acc1.getMovements());
